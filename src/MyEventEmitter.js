@@ -33,9 +33,11 @@ class MyEventEmitter {
   emit(eventName, ...args) {
     const callbacks = this.listeners[eventName];
 
-    callbacks.forEach((fn) => {
-      fn(...args);
-    });
+    if (callbacks) {
+      callbacks.forEach((fn) => {
+        fn(...args);
+      });
+    }
   }
   prependListener(name, callback) {
     if (!this.listeners[name]) {
